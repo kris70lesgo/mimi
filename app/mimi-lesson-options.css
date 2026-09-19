@@ -1,0 +1,13 @@
+/* Answer choices remain clearly tappable at rest, with Mimi's blue learning accent. */
+.mimi-lesson .mimi-options{gap:16px;margin-top:4px}
+.mimi-lesson .mimi-options button{min-height:76px;border:2px solid #d8e1e5;border-bottom-width:5px;border-radius:16px;background:#fff;color:#3c4852;padding:14px 17px;box-shadow:none;transition:transform .12s ease,border-color .12s ease,background .12s ease}
+.mimi-lesson .mimi-options button:not(:disabled):hover{border-color:#85d4f4;background:#f3fbff;transform:translateY(-1px)}
+.mimi-lesson .mimi-options button.chosen{border-color:#1cb0f6;border-bottom-color:#168fcb;background:#e6f7ff;color:#167eae}
+.mimi-lesson .mimi-options button b{width:31px;height:31px;border:2px solid #dce5e9;border-bottom-width:3px;border-radius:10px;background:#fff;color:#7a8993;font-size:12px;font-weight:900}
+.mimi-lesson .mimi-options button.chosen b{border-color:#9bdcf6;color:#168fcb}
+.mimi-lesson .mimi-options button.correct{border-color:#58cc02;border-bottom-color:#3fa000;background:#eaffd8;color:#398b00}
+.mimi-lesson .mimi-options button.correct b{border-color:#8fd95c;background:#fff;color:#398b00}
+.mimi-lesson .mimi-options button.incorrect{border-color:#ff4b4f;border-bottom-color:#d9383d;background:#ffe6e5;color:#d7373c}
+.mimi-lesson .mimi-options button.incorrect b{border-color:#ff9696;background:#fff;color:#d7373c}
+.mimi-lesson .mimi-options button:disabled{cursor:default}
+@media(max-width:680px){.mimi-lesson .mimi-options{gap:12px}.mimi-lesson .mimi-options button{min-height:68px;border-radius:14px;padding:11px 13px}}

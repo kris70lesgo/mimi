@@ -1,0 +1,172 @@
+/* Final mobile layer: a small-screen anatomy notebook, not a compressed desktop dashboard. */
+.mimi-mobile-nav{display:none}
+
+/* Desktop theme rules load after the original responsive rules. Reset the
+   shell dimensions here so a hidden sidebar never leaves an empty column. */
+@media(max-width:1100px){
+  .mimi-layout,.mimi-page-layout,.mimi-practice-hub{grid-template-columns:minmax(0,1fr);gap:24px}
+  .mimi-main{min-width:0;box-sizing:border-box}
+  .mimi-rail{grid-template-columns:minmax(0,1fr);margin-top:24px}
+}
+
+@media(max-width:680px){
+  html:has(.mimi-shell),body:has(.mimi-shell){max-width:100%;overflow-x:clip}
+  .mimi-shell{display:block;width:100vw;max-width:100vw;min-width:0;min-height:100dvh;padding-bottom:calc(75px + env(safe-area-inset-bottom));background:#fff;overflow-x:clip}
+  .mimi-shell .mimi-side{display:none}
+  .mimi-shell .mimi-main{box-sizing:border-box;width:100vw;max-width:100vw;min-width:0;margin:0;min-height:calc(100dvh - 70px);padding:20px 16px 28px!important;overflow-x:clip}
+  .mimi-main>*{min-width:0;max-width:100%}
+  .mimi-mobile{width:100vw;max-width:100vw;box-sizing:border-box;overflow:hidden}
+  .mimi-mobile>button:last-child{position:absolute;right:14px;top:50%;max-width:calc(100vw - 118px);transform:translateY(-50%);white-space:nowrap}
+  .mimi-top{position:relative!important;display:flex!important;justify-content:space-between!important;align-items:center;margin:0 0 20px!important;min-height:38px}
+  .mimi-top>div:first-child{display:none}
+  .mimi-top .mimi-stats{width:100%;justify-content:flex-end;gap:11px}
+  .mimi-stats .mimi-status-counter>div{right:0;left:auto;min-width:178px}
+  .mimi-layout,.mimi-page-layout,.mimi-practice-hub{width:100%!important;max-width:100%!important;min-width:0;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:20px!important}
+  .mimi-sections{padding-top:0!important;min-width:0}
+  .mimi-section-card{width:100%!important;max-width:100%!important;box-sizing:border-box}
+  .mimi-expedition-strip{padding:15px!important;border-radius:17px!important;gap:11px!important}
+  .mimi-expedition-strip i{width:38px!important;height:38px!important;font-size:18px!important}
+  .mimi-expedition-strip b{font-size:13px!important;line-height:1.25}
+  .mimi-expedition-strip span{font-size:10px!important}
+  .mimi-expedition-strip button{min-height:40px!important;padding:0 12px!important}
+  .mimi-expedition-strip{flex-wrap:wrap}
+  .mimi-expedition-strip>div{min-width:0;flex:1}
+  .mimi-section-card{padding-bottom:90px!important}
+  .mimi-section-progress i{width:auto;min-width:0;flex:1}
+  .mimi-hero{min-height:150px!important;padding:21px!important;border-radius:18px!important}
+  .mimi-hero h2{max-width:100%;padding-right:0;font-size:23px!important}
+  .mimi-hero .mimi-primary{position:static!important;width:100%;min-height:49px;margin-top:18px;justify-content:center}
+  .mimi-section-title{display:block!important;margin:32px 0 18px!important}
+  .mimi-section-title:before,.mimi-section-title:after{display:none!important}
+  .mimi-section-title h2{font-size:17px!important;line-height:1.4!important}
+  .mimi-rail{display:grid!important;grid-template-columns:1fr!important;margin-top:0!important;gap:14px!important}
+  .mimi-card{padding:18px!important;border-radius:19px!important}
+  .mimi-card h3{font-size:19px!important}
+  .mimi-section-card{min-height:252px!important;margin:14px 0!important;padding:23px!important;border-radius:19px!important}
+  .mimi-section-card>div{max-width:100%!important}
+  .mimi-section-card h2{margin:14px 0 8px!important;font-size:24px!important}
+  .mimi-section-card p{min-height:0!important;font-size:13px!important}
+  .mimi-section-card>img{display:block!important;width:108px!important;height:108px!important;right:10px!important;top:11px!important;opacity:.45}
+  .mimi-section-card .mimi-section-cta{position:absolute!important;right:21px!important;bottom:20px!important;left:21px!important;width:calc(100% - 42px)!important;min-height:50px!important;box-sizing:border-box!important}
+  .mimi-unit-detail .mimi-nodes{min-height:0!important;padding-top:28px!important;gap:27px!important}
+  .mimi-unit-detail .mimi-nodes:before{top:20px!important;bottom:20px!important}
+  .mimi-node{width:190px!important;min-height:62px!important}
+  .mimi-node i{width:62px!important;height:62px!important;border-width:6px!important;font-size:24px!important}
+  .mimi-node.current i{width:76px!important;height:76px!important;font-size:30px!important}
+  .mimi-node.current:after{transform:translateY(-57px)!important;font-size:10px!important}
+  .mimi-shop-page{margin-bottom:8px!important}
+  .mimi-shop-banner{min-height:260px!important;padding:24px!important}
+  .mimi-shop-banner h2{max-width:70%!important;font-size:27px!important}
+  .mimi-shop-banner p{max-width:67%!important}
+  .mimi-shop-banner>img{right:-36px!important;bottom:-18px!important;width:205px!important;height:205px!important}
+  .mimi-profile-page,.mimi-practice-main{min-width:0}
+  .mimi-practice-aside{display:grid;gap:14px}
+  .mimi-rewind-banner{min-height:270px!important;border-radius:21px!important}
+  .mimi-rewind-copy{max-width:67%!important;padding:22px!important}
+  .mimi-rewind-copy h2{font-size:28px!important}
+  .mimi-practice-metrics{grid-template-columns:1fr!important;gap:10px!important}
+  .mimi-practice-drills,.mimi-practice-collections{grid-template-columns:1fr!important}
+  .mimi-league-head{padding:24px 20px!important}
+  .mimi-lesson-options,.mimi-options{grid-template-columns:1fr!important}
+  .mimi-options button{min-height:64px!important;font-size:14px!important}
+  .mimi-answer-input input{min-height:56px!important;font-size:16px!important}
+  .mimi-model-card{height:min(43dvh,320px)!important;border-radius:19px!important}
+  .mimi-model-card .study-viewer-controls{bottom:8px!important;transform:scale(.9);transform-origin:center bottom}
+  .mimi-shell:has(.mimi-lesson){padding-bottom:0!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-mobile-nav{display:none!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-top{display:none!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-main{display:flex!important;width:100%!important;max-width:100%!important;height:100dvh!important;min-height:100dvh!important;margin:0!important;padding:14px 16px 0!important;overflow:hidden}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson{width:100%!important;max-width:100%!important;min-width:0!important;height:100%!important;min-height:100%!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson>header{height:46px!important;gap:12px!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson>section{padding-top:18px!important;padding-bottom:12px!important;overflow-x:hidden!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson h2{font-size:23px!important;line-height:1.27!important;margin:7px 0 16px!important}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson footer{padding:14px 16px calc(14px + env(safe-area-inset-bottom))!important}
+  .mimi-lesson footer:not(.success):not(.failure){display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;min-height:96px!important}
+  .mimi-lesson footer:not(.success):not(.failure) button{width:100%;min-height:50px;justify-content:center}
+  .mimi-mobile-nav{position:fixed;z-index:30;right:0;bottom:0;left:0;display:grid;width:100vw;max-width:100vw;box-sizing:border-box;grid-template-columns:repeat(4,minmax(0,1fr));min-height:68px;padding:7px max(10px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));border-top:1px solid #dce6eb;background:#fffffff5;backdrop-filter:blur(18px);box-shadow:0 -4px 20px #213e4a0a}
+  .mimi-mobile-nav button{display:grid;min-width:0;width:100%;place-items:center;gap:3px;min-height:52px;padding:0;border:0;border-radius:14px;background:transparent;color:#748493;font:800 10px/1 "Avenir Next",ui-rounded,sans-serif;cursor:pointer}
+  .mimi-mobile-nav button svg{stroke-width:2.6}
+  .mimi-mobile-nav button.active{color:#159fd6;background:#ddf4ff;box-shadow:inset 0 0 0 1px #71d1f5}
+}
+
+@media(max-width:420px){
+  .mimi-main{padding-inline:13px!important}
+  .mimi-mobile{padding-inline:14px!important}
+  .mimi-top .mimi-stats{gap:7px}
+  .mimi-top .mimi-status-counter:nth-of-type(2){display:none}
+  .mimi-stats .mimi-sound-toggle{padding:7px!important}
+  .mimi-section-card>img{display:none!important}
+  .mimi-section-card h2{font-size:22px!important}
+  .mimi-shop-banner h2{max-width:64%!important;font-size:24px!important}
+  .mimi-shop-banner p{font-size:12px!important}
+  .mimi-practice-section-head h2{font-size:22px!important}
+}
+
+@media(max-height:540px) and (orientation:landscape){
+  .mimi-mobile-nav{display:none!important}
+  .mimi-shell{padding-bottom:0!important}
+  .mimi-main{min-height:calc(100dvh - 58px)!important;padding-bottom:20px!important}
+  .mimi-mobile{height:58px!important}
+}
+
+/* Shared section progress rail — matches the lesson-player progress treatment. */
+.mimi-section-card .mimi-section-progress{
+  position:relative;
+  z-index:1;
+  display:grid;
+  width:min(100%,350px);
+  height:18px;
+  margin:24px 0;
+  place-items:center;
+  overflow:visible;
+  border-radius:999px;
+  background:#213941;
+  box-shadow:inset 0 1px 1px #102329,0 2px 0 #d7e4e8;
+}
+
+.mimi-section-card .mimi-section-progress>i{
+  position:absolute;
+  z-index:-1;
+  top:0;
+  bottom:0;
+  left:0;
+  display:block;
+  min-width:38px;
+  height:auto;
+  margin:0;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#a6df3f,#72c72a);
+  box-shadow:inset 0 2px #c4f26b;
+}
+
+.mimi-section-card .mimi-section-progress>i:after{content:none}
+
+.mimi-section-card .mimi-section-progress>b{
+  position:relative;
+  z-index:1;
+  color:#fff;
+  font:900 12px/1 "Avenir Next",ui-rounded,sans-serif;
+  letter-spacing:.02em;
+}
+
+.mimi-section-card .mimi-section-trophy{
+  position:absolute;
+  z-index:2;
+  top:50%;
+  right:-10px;
+  display:grid;
+  width:38px;
+  height:38px;
+  box-sizing:border-box;
+  place-items:center;
+  transform:translateY(-50%);
+  border:4px solid #fff;
+  border-radius:13px;
+  background:#58cc02;
+  color:#fff;
+  box-shadow:0 3px 0 #3d9704,0 2px 8px #21394133;
+}
+
+@media(max-width:620px){
+  .mimi-section-card .mimi-section-progress{width:calc(100% - 18px);margin:20px 0}
+}

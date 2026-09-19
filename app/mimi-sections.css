@@ -1,0 +1,2 @@
+/* Final card positioning pass for the section overview. */
+.mimi-section-card>div{position:static}.mimi-section-card>img{z-index:0}.mimi-section-card h2,.mimi-section-card p,.mimi-section-card>div>span,.mimi-section-progress{position:relative;z-index:1}.mimi-section-cta{top:auto!important;bottom:30px!important}

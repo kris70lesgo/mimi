@@ -1,0 +1,30 @@
+.mimi-atlas-return{
+  position:fixed;
+  z-index:1000;
+  left:28px;
+  bottom:58px;
+  min-width:184px;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:0 17px!important;
+  border:2px solid #d7e1e6!important;
+  border-bottom-width:5px!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  color:#304554!important;
+  box-shadow:0 8px 22px #1825361a!important;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:-.2px;
+}
+.mimi-atlas-return:hover{
+  background:#f3fbff!important;
+  color:#168fcb!important;
+  transform:translateY(-1px);
+}
+@media(max-width:680px){
+  .mimi-atlas-return{left:16px;bottom:48px;min-width:156px;min-height:44px;font-size:14px}
+}

@@ -1,0 +1,14 @@
+/* A compact, on-path lesson preview — inspired by the course-map interaction. */
+.mimi-unit-detail .mimi-nodes .mimi-node-popup{position:absolute;z-index:12;top:160px;left:50%;width:min(332px,calc(100% - 28px));padding:22px 20px 20px;transform:translateX(-50%);border-radius:18px;background:#1fc9a9;box-shadow:0 7px #11a98d;color:#fff;text-align:left;animation:mimi-popup-in .18s cubic-bezier(.2,.9,.3,1.18)}
+.mimi-unit-detail .mimi-nodes .mimi-node-popup:before{content:"";position:absolute;top:-12px;left:50%;width:0;height:0;transform:translateX(-50%);border-right:13px solid transparent;border-bottom:13px solid #1fc9a9;border-left:13px solid transparent}
+.mimi-node-popup>span{display:block;margin:0 30px 6px 0;color:#eafff8;font-size:11px;font-weight:900;letter-spacing:.09em}
+.mimi-node-popup h3{margin:0 30px 5px 0;color:#fff;font-size:22px;line-height:1.15}
+.mimi-node-popup p{margin:0 0 18px;color:#eafff8;font-size:14px;line-height:1.4}
+.mimi-node-popup>button:not(.mimi-popup-close){display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;border:0;border-radius:14px;background:#fff;color:#13a98d;font-size:14px;font-weight:900;letter-spacing:.03em;box-shadow:0 5px #d1ebe6;cursor:pointer;text-transform:uppercase}
+.mimi-node-popup>button:not(.mimi-popup-close):hover{transform:translateY(-1px);box-shadow:0 6px #d1ebe6}
+.mimi-node-popup>button:not(.mimi-popup-close):active{transform:translateY(4px);box-shadow:0 1px #d1ebe6}
+.mimi-popup-close{position:absolute;top:10px;right:12px;display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:transparent;color:#eafff8;font-size:25px;line-height:1;cursor:pointer}
+.mimi-popup-close:hover{background:rgba(255,255,255,.16);color:#fff}
+@keyframes mimi-popup-in{from{opacity:0;transform:translate(-50%,-8px) scale(.96)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@media(max-width:620px){.mimi-unit-detail .mimi-nodes .mimi-node-popup{top:142px;width:min(310px,calc(100% - 18px));padding:19px 17px 17px}.mimi-node-popup h3{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.mimi-unit-detail .mimi-nodes .mimi-node-popup{animation:none}}

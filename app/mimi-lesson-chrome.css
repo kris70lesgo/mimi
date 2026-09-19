@@ -1,0 +1,71 @@
+/* Exercises use a focused, full-canvas learning mode — no app navigation. */
+.mimi-shell:has(.mimi-lesson) .mimi-side,.mimi-shell:has(.mimi-lesson) .mimi-mobile,.mimi-shell:has(.mimi-lesson) .mimi-top{display:none}
+.mimi-shell:has(.mimi-lesson) .mimi-main{width:100%;margin-left:0;padding-top:28px;padding-right:clamp(24px,6vw,96px);padding-left:clamp(24px,6vw,96px)}
+.mimi-lesson>header{height:62px!important;gap:16px!important}
+.mimi-lesson>header .mimi-lesson-exit{display:grid;flex:0 0 42px;width:42px;height:42px;place-items:center;padding:0;border-radius:13px;background:transparent;color:#718894;font-size:30px;line-height:1}
+.mimi-lesson>header .mimi-lesson-progress{position:relative;isolation:isolate;display:grid;flex:1;min-width:120px;height:18px;place-items:center;overflow:visible!important;border-radius:999px;background:#213941;box-shadow:inset 0 2px 0 #132b33}
+.mimi-lesson>header .mimi-lesson-progress>i{position:absolute;z-index:-1;top:0;bottom:0;left:0;display:block;min-width:38px;height:auto;border-radius:inherit;background:#92d535;box-shadow:inset 0 -4px #6bad1d;transition:width .25s ease}
+.mimi-lesson>header .mimi-lesson-progress>b{color:#eff5f6;font-size:15px;font-weight:900;letter-spacing:.04em;line-height:1}
+.mimi-lesson>header .mimi-lesson-trophy{position:absolute;right:-9px;top:50%;display:grid;width:42px;height:42px;place-items:center;border:4px solid #435861;border-radius:15px;background:#2c424b;color:#fff;box-shadow:0 3px 0 #172d35;transform:translateY(-50%)}
+.mimi-lesson>header>span{margin-left:auto;font-size:15px}
+.mimi-lesson>header .mimi-lesson-sound{margin-left:auto;border:0;background:transparent;color:#718894;font-size:0;padding:8px;display:grid;place-items:center}.mimi-lesson>header .mimi-lesson-sound+span{margin-left:0}
+.mimi-lesson footer{width:100vw;margin-right:calc(50% - 50vw);margin-left:calc(50% - 50vw);padding-right:max(24px,calc((100vw - 750px)/2));padding-left:max(24px,calc((100vw - 750px)/2))}
+@media(max-width:680px){.mimi-shell:has(.mimi-lesson) .mimi-main{padding:18px 16px 0}.mimi-lesson footer{padding-right:16px;padding-left:16px}}
+
+/* Keep the exercise and its result treatment pinned to the viewport, like a
+   focused lesson rather than a card inside the app shell. */
+.mimi-shell:has(.mimi-lesson){height:100dvh;overflow:hidden}
+.mimi-shell:has(.mimi-lesson) .mimi-main{height:100dvh;min-height:100dvh;box-sizing:border-box;padding-bottom:0;display:flex}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson{width:100%;height:100%;min-height:100%;margin:0 auto}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson>section{min-height:0}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson footer{width:100vw;margin: auto calc(50% - 50vw) 0;padding-right:max(24px,calc((100vw - 750px)/2));padding-left:max(24px,calc((100vw - 750px)/2))}
+.mimi-lesson.mimi-result{max-width:560px;align-items:center;justify-content:center;text-align:center;padding-bottom:9vh;box-sizing:border-box}
+.mimi-lesson.mimi-result .mimi-result-badge{margin:0 0 22px}
+.mimi-lesson.mimi-result>span{margin-top:0}
+.mimi-lesson.mimi-result h2{margin:9px 0}
+.mimi-lesson.mimi-result .mimi-primary{margin:0;align-self:center}
+.mimi-lesson.mimi-result .mimi-result-stats{display:flex;gap:13px;margin:28px 0}
+.mimi-lesson.mimi-result .mimi-result-stats>div{min-width:150px;padding:17px 20px;border:2px solid #dce8e5;border-bottom-width:5px;border-radius:18px;background:#f6fcf8;display:grid;gap:3px}
+.mimi-lesson.mimi-result .mimi-result-stats b{font-size:28px;color:#159d8d}
+.mimi-lesson.mimi-result .mimi-result-stats small{color:#6f8490;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+
+/* Wrong answers need an unmistakable, full-width finish state. */
+.mimi-lesson footer.failure{min-height:178px;box-sizing:border-box;display:grid;grid-template-columns:74px minmax(0,1fr) auto;align-items:center;column-gap:22px;background:#ffe1df!important;border-top:2px solid #ffb7b4;color:#d7373c!important}
+.mimi-lesson footer.failure:before{content:"×";display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:#fff;color:#ff4b4f;font-size:55px;font-weight:900;line-height:1}
+.mimi-lesson footer.failure span{max-width:380px;color:#d7373c;font-size:17px;font-weight:900;line-height:1.35}
+.mimi-lesson footer.failure button{min-width:164px;min-height:58px;border-radius:17px;background:#ff4b4f!important;box-shadow:0 5px #d9383d!important;color:#fff!important;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.mimi-lesson footer.failure button:hover{background:#ff6164!important;transform:translateY(-1px)}
+
+/* Mirror that confidence for a correct answer: a bright, celebratory green
+   result strip with a clear confirmation cue and a strong next action. */
+.mimi-lesson footer.success{min-height:178px;box-sizing:border-box;display:grid;grid-template-columns:74px minmax(0,1fr) auto;align-items:center;column-gap:22px;background:#d7ffad!important;border-top:2px solid #b6eb83;color:#3a9700!important}
+.mimi-lesson footer.success:before{content:"✓";display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:#fff;color:#58cc02;font-size:52px;font-weight:900;line-height:1}
+.mimi-lesson footer.success span{max-width:380px;color:#3a9700;font-size:18px;font-weight:900;line-height:1.35}
+.mimi-lesson footer.success button{min-width:164px;min-height:58px;border-radius:17px;background:#58cc02!important;box-shadow:0 5px #46a302!important;color:#fff!important;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.mimi-lesson footer.success button:hover{background:#63d40b!important;transform:translateY(-1px)}
+
+/* The 3D lesson stack sits closer to the progress bar and leaves the answer
+   field completely above the persistent action area. */
+.mimi-shell:has(.mimi-lesson) .mimi-lesson>section{padding-top:27px;overflow-y:auto;padding-bottom:18px}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson h2{font-size:27px;line-height:1.28;margin:7px 0 18px}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson footer:not(.success):not(.failure){border-top:0;background:transparent}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson:has(.mimi-answer-input)>section{padding-top:20px}
+.mimi-shell:has(.mimi-lesson) .mimi-lesson:has(.mimi-answer-input) h2{font-size:25px;margin-bottom:14px}
+
+@media(max-width:680px){
+  .mimi-shell:has(.mimi-lesson) .mimi-main{height:100dvh;min-height:100dvh;padding:18px 16px 0}
+  .mimi-lesson>header{height:50px!important;gap:10px!important}
+  .mimi-lesson>header .mimi-lesson-exit{flex-basis:36px;width:36px;height:36px;font-size:26px}
+  .mimi-lesson>header .mimi-lesson-progress{height:16px;min-width:0}
+  .mimi-lesson>header .mimi-lesson-progress>b{font-size:13px}
+  .mimi-lesson>header .mimi-lesson-progress>i{min-width:30px;box-shadow:inset 0 -3px #6bad1d}
+  .mimi-lesson>header .mimi-lesson-trophy{right:-5px;width:35px;height:35px;border-width:3px;border-radius:12px}
+  .mimi-lesson>header .mimi-lesson-trophy svg{width:18px;height:18px}
+  .mimi-shell:has(.mimi-lesson) .mimi-lesson footer{padding-right:16px;padding-left:16px}
+  .mimi-lesson footer.failure{min-height:170px;grid-template-columns:55px minmax(0,1fr);gap:12px;padding-top:18px;padding-bottom:18px}
+  .mimi-lesson footer.failure:before{width:55px;height:55px;font-size:42px}
+  .mimi-lesson footer.failure button{grid-column:1/-1;width:100%}
+  .mimi-lesson footer.success{min-height:170px;grid-template-columns:55px minmax(0,1fr);gap:12px;padding-top:18px;padding-bottom:18px}
+  .mimi-lesson footer.success:before{width:55px;height:55px;font-size:40px}
+  .mimi-lesson footer.success button{grid-column:1/-1;width:100%}
+}
