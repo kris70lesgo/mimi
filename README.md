@@ -24,6 +24,17 @@ npm run dev
 
 Open http://localhost:3016. To build the static site, run `npm run build`; the output is in `dist/`.
 
+## Mimi Coach AI providers
+
+The optional Mimi Coach is server-side and supports DeepSeek, Grok (xAI), Gemini, and any OpenAI-compatible provider. Set the provider and its API key in your deployment environment; do not expose the key in browser variables. Copy the matching configuration from [`.env.example`](.env.example):
+
+- `MIMI_AI_PROVIDER=deepseek` uses DeepSeek by default.
+- `MIMI_AI_PROVIDER=grok` uses xAI's Grok endpoint with `XAI_API_KEY`.
+- `MIMI_AI_PROVIDER=gemini` uses Google's OpenAI-compatible Gemini endpoint with `GEMINI_API_KEY`.
+- `MIMI_AI_PROVIDER=custom` uses `MIMI_AI_API_KEY`, `MIMI_AI_BASE_URL`, and `MIMI_AI_MODEL` for another compatible service.
+
+`MIMI_AI_BASE_URL` and `MIMI_AI_MODEL` can override the built-in defaults for any provider.
+
 ## Validate
 
 ```sh

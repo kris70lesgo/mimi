@@ -18,9 +18,45 @@ type CoachAction = {
   concept?: string;
 };
 
+type CoachProvider = "deepseek" | "grok" | "gemini" | "custom";
+
+type ProviderConfig = {
+  apiKey?: string;
+  baseUrl: string;
+  model: string;
+};
+
 const windows = new Map<string, { count: number; resetAt: number }>();
 const WINDOW_MS = 10 * 60_000;
 const MAX_REQUESTS_PER_WINDOW = 16;
+
+function providerConfig(): ProviderConfig | null {
+  const configured = (process.env.MIMI_AI_PROVIDER ?? "deepseek").trim().toLowerCase();
+  const provider: CoachProvider | null = configured === "xai" ? "grok" : configured === "google" ? "gemini" :
+    configured === "deepseek" || configured === "grok" || configured === "gemini" || configured === "custom"
+      ? configured
+      : null;
+  if (!provider) return null;
+
+  const defaults: Record<CoachProvider, Omit<ProviderConfig, "apiKey">> = {
+    deepseek: { baseUrl: "https://api.deepseek.com/v1", model: "deepseek-chat" },
+    grok: { baseUrl: "https://api.x.ai/v1", model: "grok-4.6" },
+    gemini: { baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai", model: "gemini-3.8-flash" },
+    custom: { baseUrl: "", model: "" },
+  };
+  const fallback = defaults[provider];
+  const apiKey = provider === "grok"
+    ? process.env.MIMI_AI_API_KEY ?? process.env.XAI_API_KEY ?? process.env.GROK_API_KEY
+    : provider === "gemini"
+      ? process.env.MIMI_AI_API_KEY ?? process.env.GEMINI_API_KEY
+      : process.env.MIMI_AI_API_KEY ?? process.env.DEEPSEEK_API_KEY;
+
+  return {
+    apiKey,
+    baseUrl: (process.env.MIMI_AI_BASE_URL ?? fallback.baseUrl).replace(/\/$/, ""),
+    model: process.env.MIMI_AI_MODEL ?? fallback.model,
+  };
+}
 
 function text(value: unknown, limit: number) {
   return typeof value === "string" ? value.trim().slice(0, limit) : "";
@@ -106,17 +142,20 @@ export async function POST(request: Request) {
     ? Math.max(0, Math.min(100, Math.round(context.mastery)))
     : undefined;
 
-  const apiKey = process.env.MIMI_AI_API_KEY ?? process.env.DEEPSEEK_API_KEY;
-  if (!apiKey) {
+  const provider = providerConfig();
+  if (!provider || !provider.baseUrl || !provider.model) {
+    return Response.json(
+      { error: "Mimi Coach has an unsupported or incomplete AI provider configuration." },
+      { status: 503 },
+    );
+  }
+  if (!provider.apiKey) {
     return Response.json(
       { error: "Mimi Coach needs its API key configured before it can answer." },
       { status: 503 },
     );
   }
 
-  const providerUrl = (process.env.MIMI_AI_BASE_URL ?? "https://api.deepseek.com/v1")
-    .replace(/\/$/, "");
-  const model = process.env.MIMI_AI_MODEL ?? "deepseek-chat";
   const learnerContext = [
     lesson && `Lesson: ${lesson}`,
     concept && `Current concept: ${concept}`,
@@ -131,14 +170,14 @@ export async function POST(request: Request) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 18_000);
   try {
-    const response = await fetch(`${providerUrl}/chat/completions`, {
+    const response = await fetch(`${provider.baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${provider.apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model,
+        model: provider.model,
         temperature: 0.35,
         max_tokens: 280,
         messages: [
