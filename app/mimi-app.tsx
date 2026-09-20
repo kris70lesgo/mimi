@@ -101,15 +101,17 @@ export default function MimiApp({
     "streak" | "xp" | "hearts" | null
   >(null);
   const [hydrated, setHydrated] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(
-    () =>
-      typeof window === "undefined" ||
-      localStorage.getItem("mimi-sound") !== "off",
-  );
-  useEffect(
-    () => localStorage.setItem("mimi-sound", soundEnabled ? "on" : "off"),
-    [soundEnabled],
-  );
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundPreferenceReady, setSoundPreferenceReady] = useState(false);
+  useEffect(() => {
+    setSoundEnabled(localStorage.getItem("mimi-sound") !== "off");
+    setSoundPreferenceReady(true);
+  }, []);
+  useEffect(() => {
+    if (soundPreferenceReady) {
+      localStorage.setItem("mimi-sound", soundEnabled ? "on" : "off");
+    }
+  }, [soundEnabled, soundPreferenceReady]);
   useEffect(() => {
     let alive = true;
     setHydrated(false);

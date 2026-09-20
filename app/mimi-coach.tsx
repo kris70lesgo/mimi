@@ -21,6 +21,20 @@ const prompts = [
   { label: "What next?", question: "Based on my current progress, tell me the one anatomy concept I should practice next and why." },
 ];
 
+function CoachMessage({ content }: { content: string }) {
+  const lines = content.replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\r\n?/g, "\n").split("\n");
+  return (
+    <div className="mimi-coach-message">
+      {lines.map((line, index) => {
+        const value = line.trim();
+        if (!value) return <span className="mimi-coach-message-gap" key={`gap-${index}`} />;
+        const choice = /^([A-Z]|\d+)[.)]\s+/.test(value);
+        return <p className={choice ? "mimi-coach-choice" : undefined} key={`${value}-${index}`}>{value}</p>;
+      })}
+    </div>
+  );
+}
+
 export default function MimiCoach({
   context,
   onExplore,
@@ -95,11 +109,11 @@ export default function MimiCoach({
             <Sparkles size={15} /> {context.concept ? `Studying ${context.concept}` : "Personalized to your learning path"}
           </div>
           <div className="mimi-coach-transcript" ref={transcript} aria-live="polite">
-            <article className="coach"><Bot size={15} /><p>{greeting}</p></article>
+            <article className="coach"><Bot size={15} /><CoachMessage content={greeting} /></article>
             {messages.map((message, index) => (
               <article className={message.role} key={`${message.role}-${index}`}>
                 {message.role === "coach" && <Bot size={15} />}
-                <p>{message.content}</p>
+                {message.role === "coach" ? <CoachMessage content={message.content} /> : <p>{message.content}</p>}
               </article>
             ))}
             {loading && <article className="coach thinking"><Bot size={15} /><p><span /> <span /> <span /></p></article>}

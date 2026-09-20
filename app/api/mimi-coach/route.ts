@@ -62,6 +62,10 @@ function text(value: unknown, limit: number) {
   return typeof value === "string" ? value.trim().slice(0, limit) : "";
 }
 
+function formatReplyText(value: unknown, limit: number) {
+  return text(value, limit).replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\r\n?/g, "\n");
+}
+
 function stringList(value: unknown, limit: number, itemLimit: number) {
   return Array.isArray(value)
     ? value
@@ -92,7 +96,7 @@ function coachReply(value: unknown): { answer: string; actions: CoachAction[] } 
   if (!raw) return { answer: "", actions: [] };
   try {
     const parsed = JSON.parse(raw) as { answer?: unknown; actions?: unknown };
-    const answer = text(parsed.answer, 1800);
+    const answer = formatReplyText(parsed.answer, 1800);
     const actions = Array.isArray(parsed.actions)
       ? parsed.actions
           .flatMap((action): CoachAction[] => {
@@ -106,9 +110,9 @@ function coachReply(value: unknown): { answer: string; actions: CoachAction[] } 
           })
           .slice(0, 2)
       : [];
-    return { answer: answer || raw, actions };
+    return { answer: answer || formatReplyText(raw, 1800), actions };
   } catch {
-    return { answer: raw, actions: [] };
+    return { answer: formatReplyText(raw, 1800), actions: [] };
   }
 }
 
